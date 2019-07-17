@@ -1,6 +1,6 @@
 # Conciencia Sonora
 
-![]()
+![](logo.png)
 
 Conciencia Sonora es un proyecto que busca visibilizar la exposición cotidiana al ruido, orientado a acompañar y promover campañas de concientización acerca de la contaminación sonora. Desarrollamos un producto tecnológico, versátil y de bajo costo. El mismo realiza el monitoreo y la señalización visual del nivel de ruido al que se está expuesto en un determinado espacio.
 
