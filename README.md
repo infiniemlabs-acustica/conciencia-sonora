@@ -1,4 +1,3 @@
-# Conciencia Sonora
 
 ![](logo.png)
 
