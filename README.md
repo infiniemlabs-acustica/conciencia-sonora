@@ -10,9 +10,13 @@ La señalización indica, a través de un patrón de colores, el grado de confor
 ## Información técnica
 El núcleo de este dispositivo gira en torno a la plataforma **Raspberry Pi**, mientras que la captura de señales se hace a través de un micrófono conectado a un circuito amplificador de bajo ruido de diseño propio.
 
+El desarrollo del hardware se realizó con la ayuda de herramientas como **KiCAD** (para diseño electrónico) y **FreeCAD** (para diseño de carcasa y piezas accesorias). El software se desarrolló sobre un sistema **Linux embebido** con lenguaje **Python**.
+
+Algunas de sus características son:
+
 * Autónomo y recargable con cualquier fuente / cargador de celular (5V - 2A).
-* Botón encendido/apagado del sistema
-* Botón de modo nocturno
-* Accesible desde la red local, incluye interfaz con datos de medición
+* Botón encendido/apagado del sistema.
+* Botón de modo nocturno.
+* Accesible desde la red local, incluye interfaz con datos de medición.
 
 ![](prototipo1.jpg)
