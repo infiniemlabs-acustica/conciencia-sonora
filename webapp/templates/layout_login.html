@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+    {% block content %}{% endblock %}
+        <div class="img">
+        <a href="https://infiniemacustica.com/" target="_blank"><img src="https://infiniemacustica.files.wordpress.com/2019/07/logo_infiniemlabs_acustica.png?w=385" height="60" ></a>
+        </div>
+    </body>
+</html>

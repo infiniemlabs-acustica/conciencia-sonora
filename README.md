@@ -1,11 +1,13 @@
+# CONCIENCIA SONORA
 
-![](logo.png)
+![](img/logo.png)
 
-**Conciencia Sonora** es un proyecto que busca **visibilizar la exposición cotidiana al ruido**, orientado a acompañar y promover campañas de concientización acerca de la contaminación sonora. Desarrollamos un **producto tecnológico, versátil y de bajo costo**. El mismo realiza el **monitoreo y la señalización visual** del nivel de ruido al que se está expuesto en un determinado espacio.
+
+**Conciencia Sonora** es un proyecto que busca **visibilizar la exposición cotidiana al ruido**, orientado a acompañar y promover campañas de concientización acerca de la contaminación sonora. Desarrollamos un **producto tecnológico, versátil y de bajo costo**. El mismo realiza el **monitoreo y la señalización visual** del nivel de ruido al que se está expuesto en un determinado espacio. Se utilizan descriptores derivados de los criterios [NCB](https://asa.scitation.org/doi/10.1121/1.398243) y [SIL](https://asa.scitation.org/doi/10.1121/1.381757), ademas de evaluar el nivel de presión acústica por bandas de octava.
 
 La señalización indica, a través de un patrón de colores, el grado de confort acústico en el espacio donde se encuentra.
 
-![](indicador-led.png)
+![](img/indicador-led.png)
 
 ## Información técnica
 El núcleo de este dispositivo gira en torno a la plataforma **Raspberry Pi**, mientras que la captura de señales se hace a través de un micrófono conectado a un circuito amplificador de bajo ruido de diseño propio.
@@ -19,4 +21,4 @@ Algunas de sus características son:
 * Botón de modo nocturno.
 * Accesible desde la red local, incluye interfaz con datos de medición.
 
-![](prototipo1.jpg)
+![](img/prototipo1.jpg)

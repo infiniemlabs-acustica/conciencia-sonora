@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="https://img.icons8.com/color/50/000000/audio-wave.png" rel="icon" sizes="16x16" type="image/png" >
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    </head>
+    <body>
+    {% block content %}{% endblock %}
+        <div class="img">
+           <a href="https://infiniemacustica.com/" target="_blank"><img src="https://infiniemacustica.files.wordpress.com/2019/07/logo_infiniemlabs_acustica.png?w=385" height="60" ></a>
+        </div>
+    </body>
+</html>
