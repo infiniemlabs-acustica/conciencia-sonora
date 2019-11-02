@@ -1,9 +1,3 @@
-'''
-Archivo principal del proyecto, 
-todo nuestro código Python estará en este archivo 
-(rutas, conexión MySQL, validación, etc.).
-'''
-
 from flask import Flask, render_template, request, redirect, url_for, session
 import re
 
@@ -13,63 +7,81 @@ from logs import Logs
 try:
     app = Flask(__name__)
     db = DB()
+
     app.secret_key = 'cualquiercosa'
 
-    # http://localhost:5000/cslogin/ - this will be the login page, we need to use both GET and POST requests
     @app.route('/concienciasonora/login/', methods = ['GET', 'POST'])
     def login():
-        # Output message if something goes wrong...
+        """
+            def login():
+                http://localhost:5000/concienciasonora/login/ - esta es la pagina LOGIN, se implementa GET y POST requests
+        """  
+
+        # Mensaje de salida que visualiza el usuario
         msg = ''
-        # Check if "username" and "password" POST requests exist (user submitted form)
+
+        # Chequear si "username" y "password" POST requests existen (submitted form)
         if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-            # Create variables for easy access
+            # Crear variables de rapido acceso
             username = request.form['username']
             password = request.form['password']
-            # Check if account exists using MySQL            
+            
+            # Consultar si existe la cuenta - MySQL            
             qi = 'SELECT * FROM cuentas WHERE username = %s AND password = %s'
             values = (username, password)
             account = db.getWhere(qi,values)
             if account:
-                # Create session data, we can access this data in other routes
+                # Si la cuenta existe crear una sesion que puede ser accedida desde otras rutas
                 session['loggedin'] = True
                 session['id'] = account[0]
                 session['username'] = account[1]
-                # Redirect to home page
+                # redirijo a home.html
                 return redirect(url_for('home'))
             else:
-                # Account doesnt exist or username/password incorrect
+                # Si la cuenta no existe o username/password son incorrectos
                 msg = 'Usuario o contraseña incorrecta'
 
-        # Show the login form with message (if any)
+        # Mostrar el mensaje resultante
         return render_template('index.html', msg=msg)
     
-    # http://localhost:5000/cslogin/logout - this will be the logout page
     @app.route('/concienciasonora/logout')
     def logout():
-        # Remove session data, this will log the user out
+        """
+            def login():
+                http://localhost:5000/concienciasonora/logout - esta es la pagina LOGOUT
+        """  
+
+        # Eliminar session data
         session.pop('loggedin', None)
         session.pop('id', None)
         session.pop('username', None)
-        # Redirect to login page
+
+        # # redirijo a index.html
         return redirect(url_for('login'))    
     
-    # http://localhost:5000/cslogin/register - this will be the registration page, we need to use both GET and POST requests
     @app.route('/concienciasonora/register', methods=['GET', 'POST'])
     def register():
-        # Output message if something goes wrong...
+        """
+            def login():
+                http://localhost:5000/concienciasonora/register/ - esta es la pagina REGISTER, se implementa GET y POST requests
+        """  
+
+        # Mensaje de salida que visualiza el usuario
         msg = ''
-        # Check if "username", "password" and "email" POST requests exist (user submitted form)
+
+        # Chequear si "username" y "password" POST requests existen (submitted form)
         if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-            # Create variables for easy access
+            # Crear variables de rapido acceso  
             username = request.form['username']
             password = request.form['password']
             email = request.form['email']
             
-            # Check if account exists using MySQL            
+            # Consultar si existe la cuenta - MySQL            
             qi = 'SELECT * FROM cuentas WHERE username = %s'
             values = (username,)
             account = db.getWhere(qi,values)
-            # If account exists show error and validation checks
+            
+            # Si la cuenta existe chequear errores y validar datos ingresados
             if account:
                 msg = 'La cuenta ya existe!'
             elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
@@ -79,16 +91,17 @@ try:
             elif not username or not password or not email:
                 msg = 'Por favor completar el formulario!'
             else:
-                # Account doesnt exists and the form data is valid, now insert new account into accounts table
+                # Si la cuenta no existe y los datos son validos, insertar una nueva cuenta en la tabla
                 qi = 'INSERT INTO cuentas VALUES (NULL, %s, %s, %s)'
                 values = (username, password, email)
                 account = db.insert(qi,values)
-                msg = 'You have successfully registered!'
+                msg = 'Su usuario fue registrado exitosamente!'
 
         elif request.method == 'POST':
-            # Form is empty... (no POST data)
+            # si el formulario esta vacio... (no POST data)
             msg = 'Por favor completar el formulario!'
-        # Show registration form with message (if any)
+
+        # Mostrar el mensaje resultante
         return render_template('register.html', msg=msg)
 
     # http://localhost:5000/pythinlogin/home - this will be the home page, only accessible for loggedin users
@@ -122,6 +135,5 @@ try:
 
 except Exception as e:
     logs = Logs()
-    logs.appendFile(e)
-    
+    logs.appendFile(e)   
     print(e)

@@ -8,7 +8,7 @@ class DB:
     
     def __init__(self):
         try:
-            self.connect = mysql.connector.connect(host = "localhost", user = "root", password = "", database = "cslogin")
+            self.connect = mysql.connector.connect(host = "localhost", user = "root", password = "", database = "conciencia_sonora")
             self.cursor = self.connect.cursor()
         
         except Exception as e:
