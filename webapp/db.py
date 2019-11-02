@@ -1,7 +1,3 @@
-'''
-aca van todo lo que son operaciones.
-para consultar la base
-'''
 import mysql.connector
 
 class DB:
@@ -38,5 +34,4 @@ class DB:
 
 if __name__ == "__main__":
     # Instanciar pruebas
-
     db = DB()

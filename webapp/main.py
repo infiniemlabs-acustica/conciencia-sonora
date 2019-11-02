@@ -35,13 +35,13 @@ try:
                 session['loggedin'] = True
                 session['id'] = account[0]
                 session['username'] = account[1]
-                # redirijo a home.html
+                # Redirijir a home.html
                 return redirect(url_for('home'))
             else:
                 # Si la cuenta no existe o username/password son incorrectos
                 msg = 'Usuario o contraseña incorrecta'
 
-        # Mostrar el mensaje resultante
+        # Redirijir a home.htmlMostrar el mensaje resultante
         return render_template('index.html', msg=msg)
     
     @app.route('/concienciasonora/logout')
@@ -104,30 +104,37 @@ try:
         # Mostrar el mensaje resultante
         return render_template('register.html', msg=msg)
 
-    # http://localhost:5000/pythinlogin/home - this will be the home page, only accessible for loggedin users
-    @app.route('/concienciasonora/home')
+    @app.route('/concienciasonora/home') 
     def home():
-        # Check if user is loggedin
+        """
+            def login():
+                http://localhost:5000/concienciasonora/home/ - esta es la pagina HOME, solo pueden ingresar usuario registrados
+        """ 
+        
+        # Comprobar si el usuario esta loggedin
         if 'loggedin' in session:
-            # User is loggedin show them the home page
+            # Redirijir a home.html
             return render_template('home.html', username=session['username'])
-        # User is not loggedin redirect to login page
+        # Redirijir a index.html
         return redirect(url_for('login'))
 
-    # http://localhost:5000/pythinlogin/profile - this will be the profile page, only accessible for loggedin users
     @app.route('/concienciasonora/profile')
     def profile():
-        # Check if user is loggedin
-        if 'loggedin' in session:
-            # We need all the account info for the user so we can display it on the profile page
+        """
+            def login():
+                http://localhost:5000/concienciasonora/profile/ - esta es la pagina PROFILE, solo pueden ingresar usuario registrados
+        """ 
 
+        # Comprobar si el usuario esta loggedin
+        if 'loggedin' in session:
+            # Consulta a la base de datos
             qi = 'SELECT * FROM cuentas WHERE id = %s'
             values = (session['id'],)
             account = db.getWhere(qi,values)
             print(account)
-            # Show the profile page with account info
-            return render_template('profile.html', account=account)
-        # User is not loggedin redirect to login page
+            # Mostrar los datos de la cuenta
+            return render_template('profile.html', account=account)      
+        # Redirijir a index.html
         return redirect(url_for('login'))
     
     # con host='0.0.0.0', se puede acceder desde cualquier cliente externo, a la direccion del equipo que se ejecuta el servidor flask
