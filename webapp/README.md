@@ -1,6 +1,6 @@
 # CONCIENCIA SONORA - WEBAPP
 
-<img src="../img/concienciaSonora_login.png" alt="concienciaSonora_login" width="1000"/>
+![](../img/concienciaSonora_login.png)
 
 ## Caracteristicas
 
