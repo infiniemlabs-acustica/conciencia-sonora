@@ -1,6 +1,6 @@
-/* Template: Leno - Mobile App HTML Landing Page Template
+/* Template: Revo - Desktop App HTML Landing Page Template
    Author: Inovatik
-   Created: Mar 2019
+   Created: Aug 2019
    Description: Custom JS file
 */
 
@@ -48,7 +48,6 @@
         $(".navbar-collapse").collapse('hide');
     });
 
-
     /* Rotating Text - Morphtext */
 	$("#js-rotating").Morphext({
 		// The [in] animation type. Refer to Animate.css for a list of available animations.
@@ -59,6 +58,19 @@
 		speed: 2000,
 		complete: function () {
 			// Called after the entrance animation is executed.
+		}
+	});
+
+    /* Text Slider - Swiper */
+	var textSlider = new Swiper('.text-slider', {
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false
+		},
+        loop: true,
+        navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev'
 		}
     });
     
@@ -89,67 +101,20 @@
     });
 
     
-    /* Image Slider - Swiper */
-    var imageSlider = new Swiper('.image-slider', {
-        autoplay: {
-            delay: 2000,
-            disableOnInteraction: false
-		},
-        loop: false,
-        navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-        spaceBetween: 30,
-        slidesPerView: 5,
-		breakpoints: {
-            // when window is <= 380px
-            380: {
-                slidesPerView: 1,
-                spaceBetween: 10
-            },
-            // when window is <= 516px
-            516: {
-                slidesPerView: 2,
-                spaceBetween: 10
-            },
-            // when window is <= 768px
-            768: {
-                slidesPerView: 3,
-                spaceBetween: 20
-            },
-            // when window is <= 992px
-            992: {
-                slidesPerView: 4,
-                spaceBetween: 30
-            },
-            // when window is <= 1200px
-            1200: {
-                slidesPerView: 5,
-                spaceBetween: 30
-            },
-        }
-    });
-
-
-    /* Image Slider - Magnific Popup */
-	$('.popup-link').magnificPopup({
+    /* Details Lightbox - Magnific Popup */
+	$('.popup-with-move-anim').magnificPopup({
+		type: 'inline',
+		fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
+		fixedBgPos: true,
+		overflowY: 'auto',
+		closeBtnInside: true,
+		preloader: false,
+		midClick: true,
 		removalDelay: 300,
-		type: 'image',
-		callbacks: {
-			beforeOpen: function() {
-				this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure ' + this.st.el.attr('data-effect'));
-			},
-			beforeClose: function() {
-				$('.mfp-figure').addClass('fadeOut');
-			}
-		},
-		gallery:{
-			enabled:true //enable gallery mode
-		}
+		mainClass: 'my-mfp-slide-bottom'
     });
-
     
+
     /* Video Lightbox - Magnific Popup */
     $('.popup-youtube, .popup-vimeo').magnificPopup({
         disableOn: 700,
@@ -183,52 +148,6 @@
     });
 
 
-    /* Lightbox - Magnific Popup */
-	$('.popup-with-move-anim').magnificPopup({
-		type: 'inline',
-		fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
-		fixedBgPos: true,
-		overflowY: 'auto',
-		closeBtnInside: true,
-		preloader: false,
-		midClick: true,
-		removalDelay: 300,
-		mainClass: 'my-mfp-slide-bottom'
-	});
-    
-
-    /* Counter - CountTo */
-	var a = 0;
-	$(window).scroll(function() {
-		if ($('#counter').length) { // checking if CountTo section exists in the page, if not it will not run the script and avoid errors	
-			var oTop = $('#counter').offset().top - window.innerHeight;
-			if (a == 0 && $(window).scrollTop() > oTop) {
-			$('.counter-value').each(function() {
-				var $this = $(this),
-				countTo = $this.attr('data-count');
-				$({
-				countNum: $this.text()
-				}).animate({
-					countNum: countTo
-				},
-				{
-					duration: 2000,
-					easing: 'swing',
-					step: function() {
-					$this.text(Math.floor(this.countNum));
-					},
-					complete: function() {
-					$this.text(this.countNum);
-					//alert('finished');
-					}
-				});
-			});
-			a = 1;
-			}
-		}
-    });
-
-
     /* Move Form Fields Label When User Types */
     // for input and textarea fields
     $("input, textarea").keyup(function(){
@@ -240,60 +159,114 @@
     });
 
 
-    /* Contact Form */
-    $("#contactForm").validator().on("submit", function(event) {
+    /* Trial Form */
+    $("#trialForm").validator().on("submit", function(event) {
     	if (event.isDefaultPrevented()) {
             // handle the invalid form...
-            cformError();
-            csubmitMSG(false, "Por favor completar todos los campos!");
+            tformError();
+            tsubmitMSG(false, "Please fill all fields!");
         } else {
             // everything looks good!
             event.preventDefault();
-            csubmitForm();
+            tsubmitForm();
         }
     });
 
-    function csubmitForm() {
+    function tsubmitForm() {
         // initiate variables with form content
-		var name = $("#cname").val();
-		var email = $("#cemail").val();
-        var message = $("#cmessage").val();
-        var terms = $("#cterms").val();
+		var name = $("#tname").val();
+		var occupation = $("#toccupation").val();
+		var email = $("#temail").val();
+        var terms = $("#tterms").val();
+        
         $.ajax({
             type: "POST",
-            url: "php/process.php",
-            data: "name=" + name + "&email=" + email + "&message=" + message + "&terms=" + terms, 
+            url: "php/trialform-process.php",
+            data: "name=" + name + "&occupation=" + occupation + "&email=" + email + "&terms=" + terms, 
             success: function(text) {
                 if (text == "success") {
-                    cformSuccess();
+                    tformSuccess();
                 } else {
-                    cformError();
-                    csubmitMSG(false, text);
+                    tformError();
+                    tsubmitMSG(false, text);
                 }
             }
         });
 	}
 
-    function cformSuccess() {
-        $("#contactForm")[0].reset();
-        csubmitMSG(true, "Mensaje enviado!");
+    function tformSuccess() {
+        $("#trialForm")[0].reset();
+        tsubmitMSG(true, "Request Submitted!");
         $("input").removeClass('notEmpty'); // resets the field label after submission
-        $("textarea").removeClass('notEmpty'); // resets the field label after submission
     }
 
-    function cformError() {
-        $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    function tformError() {
+        $("#trialForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
             $(this).removeClass();
         });
 	}
 
-    function csubmitMSG(valid, msg) {
+    function tsubmitMSG(valid, msg) {
         if (valid) {
             var msgClasses = "h3 text-center tada animated";
         } else {
             var msgClasses = "h3 text-center";
         }
-        $("#cmsgSubmit").removeClass().addClass(msgClasses).text(msg);
+        $("#tmsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    }
+
+
+    /* Newsletter Form */
+    $("#newsletterForm").validator().on("submit", function(event) {
+    	if (event.isDefaultPrevented()) {
+            // handle the invalid form...
+            nformError();
+            nsubmitMSG(false, "Please fill all fields!");
+        } else {
+            // everything looks good!
+            event.preventDefault();
+            nsubmitForm();
+        }
+    });
+
+    function nsubmitForm() {
+        // initiate variables with form content
+		var email = $("#nemail").val();
+        var terms = $("#nterms").val();
+        $.ajax({
+            type: "POST",
+            url: "php/newsletterform-process.php",
+            data: "email=" + email + "&terms=" + terms, 
+            success: function(text) {
+                if (text == "success") {
+                    nformSuccess();
+                } else {
+                    nformError();
+                    nsubmitMSG(false, text);
+                }
+            }
+        });
+	}
+
+    function nformSuccess() {
+        $("#newsletterForm")[0].reset();
+        nsubmitMSG(true, "Subscribed!");
+        $("input").removeClass('notEmpty'); // resets the field label after submission
+    }
+
+    function nformError() {
+        $("#newsletterForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $(this).removeClass();
+        });
+	}
+
+    function nsubmitMSG(valid, msg) {
+        if (valid) {
+            var msgClasses = "h3 text-center tada animated";
+        } else {
+            var msgClasses = "h3 text-center";
+        }
+        $("#nmsgSubmit").removeClass().addClass(msgClasses).text(msg);
     }
 
 
@@ -319,7 +292,7 @@
         
         $.ajax({
             type: "POST",
-            url: "php/process.php",
+            url: "php/privacyform-process.php",
             data: "name=" + name + "&email=" + email + "&select=" + select + "&terms=" + terms, 
             success: function(text) {
                 if (text == "success") {

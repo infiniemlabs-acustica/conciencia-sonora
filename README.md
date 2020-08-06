@@ -22,3 +22,14 @@ Algunas de sus características son:
 * Accesible desde la red local, incluye interfaz con datos de medición.
 
 ![](img/prototipo1.jpg)
+
+
+## Template 
+
+https://inovatik.com/revo-landing-page/index.html
+https://demo.goodlayers.com/apzo/product/
+https://wp.nyu.edu/sonyc/
+https://www.zooniverse.org/projects/anaelisa24/sounds-of-new-york-city-sonyc/about/research
+## Herramientas
+https://cssgradient.io/
+https://pixlr.com/es/x/
