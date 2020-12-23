@@ -1278,7 +1278,7 @@ input[type='checkbox'] {
 .basic-3 {
 	padding-top: 7rem;
 	padding-bottom: 3rem;
-	background-color: #0b0433;
+	background-color:  #000000;
 	text-align: center;
 }
 
@@ -1357,7 +1357,7 @@ input[type='checkbox'] {
 }
 
 .footer .social-icons {
-	margin-top:rem;
+	margin-top:0rem;
 }
 
 .footer .social-icons .fab {

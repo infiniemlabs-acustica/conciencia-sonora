@@ -7,7 +7,14 @@ Un proyecto que busca **visibilizar la exposición cotidiana al ruido**, orienta
 
 La señalización indica, a través de un patrón de colores, el grado de confort acústico en el espacio donde se encuentra.
 
-![](img/indicador-led.png)
+[www.concienciasonora.com.ar](www.concienciasonora.com.ar)
+
+## Publicación 
+Disponible para descargar en:
+[Revista INNOVA - UNTREF](http://revistas.untref.edu.ar/index.php/innova/article/view/882)
+
+## Como citar
+F. Chungo, A. Groisman, H. San Martín, y M. Yommi, «Desarrollo de un dispositivo de evaluación y señalización de confort acústico», innova, dic. 2020.
 
 ## Información técnica
 El núcleo de este dispositivo gira en torno a la plataforma **Raspberry Pi**, mientras que la captura de señales se hace a través de un micrófono conectado a un circuito amplificador de bajo ruido de diseño propio.
@@ -26,10 +33,12 @@ Algunas de sus características son:
 
 ## Template 
 
-https://inovatik.com/revo-landing-page/index.html
-https://demo.goodlayers.com/apzo/product/
-https://wp.nyu.edu/sonyc/
-https://www.zooniverse.org/projects/anaelisa24/sounds-of-new-york-city-sonyc/about/research
+* Website: https://inovatik.com/revo-landing-page/index.html
+* Diseño: https://demo.goodlayers.com/apzo/product/
+* Desarrollo: https://wp.nyu.edu/sonyc/ , https://www.zooniverse.org/projects/anaelisa24/sounds-of-new-york-city-sonyc/about/research
+
 ## Herramientas
-https://cssgradient.io/
-https://pixlr.com/es/x/
+* https://cssgradient.io/
+* https://pixlr.com/es/x/
+
+##
