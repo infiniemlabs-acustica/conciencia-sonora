@@ -7,7 +7,7 @@ Un proyecto que busca **visibilizar la exposición cotidiana al ruido**, orienta
 
 La señalización indica, a través de un patrón de colores, el grado de confort acústico en el espacio donde se encuentra.
 
-[www.concienciasonora.com.ar](www.concienciasonora.com.ar)
+[www.concienciasonora.com.ar](https://concienciasonora.com.ar/)
 
 ## Publicación 
 Disponible para descargar en:
